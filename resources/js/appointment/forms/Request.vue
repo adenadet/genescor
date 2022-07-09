@@ -105,9 +105,26 @@ export default {
     methods:{
         addRequest(){
             alert("Working");
-            this.RequestData.post()
-            .then({})
-            .close()
+            this.RequestData.post('/api/appointments/users/'+ this.BioData.id)
+            .then(response =>{
+                this.$Progress.finish();
+                Fire.$emit('Reload', response);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'The User'+ response.data.user.first_name+' '+  response.data.user.last_name+' has been updated',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(()=>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: 'Please try again later!'
+                });
+                this.$Progress.fail();
+            });            
         },
         getInitials(){},
         updateProfilePic(e){

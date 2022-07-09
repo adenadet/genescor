@@ -150,7 +150,7 @@
                 },
             updateBioData(){
                 this.$Progress.start();
-                this.BioData.post('/api/hrms/bios')
+                this.BioData.post('/api/ums/bios')
                 .then(response =>{
                     this.$Progress.finish();
                     Fire.$emit('Reload', response);

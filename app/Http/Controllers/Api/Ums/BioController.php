@@ -30,7 +30,6 @@ class BioController extends Controller
             'area_id' => 'numeric',
             'phone' => 'numeric',
             'alt_phone' => 'nullable|numeric',
-            'branch_id' => 'required|numeric',
             'sex' => 'required|string',
             'dob' => 'required|date',
         ]);
@@ -63,7 +62,6 @@ class BioController extends Controller
             'personal_email' => $request['personal_email'],
             'phone' => $request['phone'],
             'alt_phone' => $request['alt_phone'],
-            'branch_id' => $request['branch_id'],
             'department_id' => $request['department_id'],
             'sex' => $request['sex'],
             'dob' => $request['dob'],
@@ -79,9 +77,8 @@ class BioController extends Controller
         
         return response()->json([
             'added' => $user,
-            'user' => User::where('id', auth('api')->id())->with('area')->with('branch')->with('state')->with('next_of_kin')->get(),
+            'user' => User::where('id', auth('api')->id())->with('area')->with('state')->with('next_of_kin')->get(),
             'areas' => Area::select('name', 'id')->where('state_id', 25)->get(),
-            'branches' => Branch::all(),
             'states' => State::where('country_id', 1)->get(),
             'nok' => NextOfKin::where('user_id', auth('api')->id())->get(),
             ]);

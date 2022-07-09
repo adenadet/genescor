@@ -41,16 +41,27 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#bio-data" data-toggle="tab">Bio Data</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#next-of-kin" data-toggle="tab">Next of Kin</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#bio-data" data-toggle="tab">Bio Data</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#next-of-kin" data-toggle="tab">Next of Kin</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#doctor" data-toggle="tab">Doctor</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#hospital" data-toggle="tab">Hospital</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#agency" data-toggle="tab">Agency</a></li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
-                            <!--<div class="tab-pane" id="timeline"></div>-->
                             <div class="tab-pane active" id="bio-data">
                                 <ProfileFormBioData :areas="areas" :states="states" :user="user" />
+                            </div>
+                            <div class="tab-pane" id="doctor">
+                                <ProfileFormDoctor :doctor="user.doctor"></ProfileFormDoctor>
+                            </div>
+                            <div class="tab-pane" id="hospital">
+                                <ProfileFormBioData :areas="areas" :states="states" :user="user" />
+                            </div>
+                            <div class="tab-pane" id="agency">
+                                <ProfileFormBioData :areas="areas" :states="states" :user="user"></ProfileFormBioData>
                             </div>
                             <div class="tab-pane" id="next-of-kin">
                                 <ProfileFormNOK :nok="nok" />
@@ -95,7 +106,7 @@ export default {
     },
     methods:{
         getInitials(){
-            axios.get('/api/hrms/profile').then(response =>{
+            axios.get('/api/ums/profile').then(response =>{
                 this.user = response.data.user[0];
                 this.areas = response.data.areas;
                 this.branches = response.data.branches;
@@ -132,9 +143,9 @@ export default {
             }
             else{
                 swal.fire({
-                        type: 'error',
-                        title: 'File is too large'
-                    })
+                    type: 'error',
+                    title: 'File is too large'
+                })
             }
         }
     }

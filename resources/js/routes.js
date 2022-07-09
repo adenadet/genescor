@@ -48,12 +48,14 @@ import ProfileAdmin from './profile/Admin.vue';
 import ProfileDoctor from './profile/Doctor.vue';
 import ProfileHospital from './profile/Hospital.vue';
 import ProfilePatient from './profile/Patient.vue';
-    import ProfileFormBioData from './profile/forms/BioData.vue';
-    import ProfileFormNOK from './profile/forms/NextOfKin.vue';
-    import ProfileFormPassword from './profile/forms/Password.vue';
+    import ProfileFormBioData   from './profile/forms/BioData.vue';
+    import ProfileFormDoctor    from './profile/forms/Doctor.vue';
+    import ProfileFormNOK       from './profile/forms/NextOfKin.vue';
+    import ProfileFormPassword  from './profile/forms/Password.vue';
 
 Vue.component('ProfilePatient', ProfilePatient); 
     Vue.component('ProfileFormBioData', ProfileFormBioData); 
+    Vue.component('ProfileFormDoctor', ProfileFormDoctor); 
     Vue.component('ProfileFormNOK', ProfileFormNOK); 
     Vue.component('ProfileFormPassword', ProfileFormPassword); 
 
@@ -97,6 +99,9 @@ Vue.component('WalletTopUps', WalletTopUps);
     Vue.component('WalletFormTopUp', WalletFormTopUp);
 
 let routes = [
+
+    //General Patint Routes 
+    {path: '/app/dashboard',                component: DashboardPatient},
     //Appointment Routes
     {path: '/app/appointments',             component: AppointmentAll},
     {path: '/app/appointments/:id',         component: AppointmentView},
@@ -124,9 +129,9 @@ let routes = [
 
     //Profile Routes
     {path: '/app/admin/profile',        component: ProfileAdmin},
-    {path: '/app/doctor/profile', component: ProfileDoctor},
-    {path: '/app/hospital/profile', component: ProfileHospital},
-    {path: '/app/patient/profile', component: ProfilePatient},
+    //{path: '/app/doctor/profile', component: ProfileDoctor},
+    //{path: '/app/hospital/profile', component: ProfileHospital},
+    {path: '/app/profile', component: ProfilePatient},
     
     //Wallet Routes
     {path: '/app/wallet',           component: WalletMain},
